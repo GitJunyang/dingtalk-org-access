@@ -13,10 +13,10 @@ public class SystemConfServiceImpl {
     }
 
    public String getCorpId(){
-       return "ding9f50b15bccd16741";
+       return "dingbf984a817367edee35c2f4657eb6378f";
    }
 
     public String getCorpSecret(){
-        return "JEfxq2g9uwSL049ErjBYUaJcR6sM0duWoGcz7W8ews17lhGCLyfh9NjgbLYYJ_pt";
+        return "6pWjTJNM4IcYfi2c9-d1zt4i4ZEvIJ027D3dBOp61PyziVQQcwsNAmVTxvCBZZeW";
     }
 }

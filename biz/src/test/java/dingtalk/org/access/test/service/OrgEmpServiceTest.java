@@ -23,7 +23,7 @@ public class OrgEmpServiceTest extends BaseTestCase {
     private OrgEmpService orgEmpService;
     @Test
     public void test_getOrgDeptList(){
-        ServiceResult<List<EmpSimpileVO>> serviceResult = orgEmpService.getOrgEmpList(640171L);
+        ServiceResult<List<EmpSimpileVO>> serviceResult = orgEmpService.getOrgEmpList(27192699L);
         System.err.println(JSON.toJSONString(serviceResult));
     }
 
@@ -34,7 +34,7 @@ public class OrgEmpServiceTest extends BaseTestCase {
         OrgEmpServiceImpl.CreateEmpVO createEmpVO = new OrgEmpServiceImpl.CreateEmpVO();
         createEmpVO.setUserid("010001");
         createEmpVO.setName("张三");
-        createEmpVO.setDepartment(Arrays.asList(1,27289328));
+        createEmpVO.setDepartment(Arrays.asList(1,27192699));
         //createEmpVO.setOrderInDepts();
         createEmpVO.setPosition("产品经理");
         createEmpVO.setMobile("18633582327");
