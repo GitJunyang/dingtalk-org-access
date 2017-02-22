@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrgMessageServiceTest extends BaseTestCase {
-    private String agentid = "77448754";
-    private String touser = "manager5351";
-    private String toparty = "29446552";
+    private String agentid = "";
+    private String touser = "";
+    private String toparty = "";
 
     @Resource
     private OrgMessageService orgMessageService;
