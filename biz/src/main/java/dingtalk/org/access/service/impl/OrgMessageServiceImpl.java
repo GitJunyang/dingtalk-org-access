@@ -9,10 +9,7 @@ import dingtalk.org.access.util.LogFormatter;
 import dingtalk.org.access.util.LogFormatter.KeyValue;
 import dingtalk.org.access.util.LogFormatter.LogEvent;
 import dingtalk.org.access.util.ServiceResult;
-import dingtalk.org.access.vo.message.BaseMessageVO;
-import dingtalk.org.access.vo.message.ListMessageStatusParamVO;
-import dingtalk.org.access.vo.message.ListMessageStatusResultVO;
-import dingtalk.org.access.vo.message.OrgMessageResultVO;
+import dingtalk.org.access.vo.message.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +70,30 @@ public class OrgMessageServiceImpl implements OrgMessageService {
             return ServiceResult.success(resultVO);
         } catch (Throwable e) {
             mainLogger.error(LogFormatter.getKVLogData(LogEvent.END, "send"), e);
+            return ServiceResult.failure(ErrorCode.SYS_ERROR);
+        }
+    }
+
+    public ServiceResult<OrgNormalMessageResultVO> sendToConversation(BaseMessageVO baseMessageVO) {
+        String message = JSON.toJSONString(baseMessageVO);
+
+        bizLogger.info(LogFormatter.getKVLogData(LogEvent.END, "sendToConversation access",
+                KeyValue.getNew("messageVO", message)));
+
+        try {
+            ServiceResult<String> tokenSr = orgService.getOrgAccessToken();
+            if (!tokenSr.isSuccess()) {
+                return ServiceResult.failure(ErrorCode.SYS_ERROR);
+            }
+            String accessToken = tokenSr.getResult();
+            String url = systemConfService.getOapiDomain() + "/message/send_to_conversation?access_token=" + accessToken;
+
+            String resultStr = httpRequestHelper.httpPostJson(url, message);
+            OrgNormalMessageResultVO resultVO = JSON.parseObject(resultStr, OrgNormalMessageResultVO.class);
+
+            return ServiceResult.success(resultVO);
+        } catch (Throwable e) {
+            mainLogger.error(LogFormatter.getKVLogData(LogEvent.END, "sendToConversation"), e);
             return ServiceResult.failure(ErrorCode.SYS_ERROR);
         }
     }

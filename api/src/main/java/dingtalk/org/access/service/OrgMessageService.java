@@ -1,10 +1,7 @@
 package dingtalk.org.access.service;
 
 import dingtalk.org.access.util.ServiceResult;
-import dingtalk.org.access.vo.message.BaseMessageVO;
-import dingtalk.org.access.vo.message.ListMessageStatusParamVO;
-import dingtalk.org.access.vo.message.ListMessageStatusResultVO;
-import dingtalk.org.access.vo.message.OrgMessageResultVO;
+import dingtalk.org.access.vo.message.*;
 
 /**
  * @author zhaoting.yht
@@ -25,4 +22,11 @@ public interface OrgMessageService {
      * @return
      */
     ServiceResult<ListMessageStatusResultVO> listMessageStatus(ListMessageStatusParamVO paramVO);
+
+    /**
+     * 发送普通会话消息
+     * @param baseMessageVO
+     * @return
+     */
+    ServiceResult<OrgNormalMessageResultVO> sendToConversation(BaseMessageVO baseMessageVO);
 }

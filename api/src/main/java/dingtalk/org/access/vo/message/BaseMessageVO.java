@@ -6,11 +6,21 @@ package dingtalk.org.access.vo.message;
  */
 public class BaseMessageVO {
 
-    private String agentid;
     private String msgtype;
+
+    /**
+     * 企业会话消息的参数
+     */
+    private String agentid;
     private String touser;
     private String toparty;
     private String code;
+
+    /**
+     * 普通会话消息的参数
+     */
+    private String sender;
+    private String cid;
 
     public String getAgentid() {
         return agentid;
@@ -50,5 +60,21 @@ public class BaseMessageVO {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 }
