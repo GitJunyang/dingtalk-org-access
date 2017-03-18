@@ -14,4 +14,5 @@
     <bean id="orgDeptService" class="dingtalk.org.access.service.impl.OrgDeptServiceImpl"/>
     <bean id="orgEmpService" class="dingtalk.org.access.service.impl.OrgEmpServiceImpl"/>
     <bean id="orgMessageService" class="dingtalk.org.access.service.impl.OrgMessageServiceImpl"/>
+    <bean id="chatService" class="dingtalk.org.access.service.impl.ChatServiceImpl"/>
 </beans>

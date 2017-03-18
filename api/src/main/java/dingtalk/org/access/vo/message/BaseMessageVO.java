@@ -22,6 +22,11 @@ public class BaseMessageVO {
     private String sender;
     private String cid;
 
+    /**
+     * 群会话消息的参数
+     */
+    private String chatid;
+
     public String getAgentid() {
         return agentid;
     }
@@ -76,5 +81,13 @@ public class BaseMessageVO {
 
     public void setCid(String cid) {
         this.cid = cid;
+    }
+
+    public String getChatid() {
+        return chatid;
+    }
+
+    public void setChatid(String chatid) {
+        this.chatid = chatid;
     }
 }

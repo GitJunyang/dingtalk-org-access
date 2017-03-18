@@ -15,6 +15,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 
+/**
+ * @author zhaoting.yht
+ * @version $Id$
+ * @since 17/2/16 下午4:39
+ */
 public class OrgMessageServiceImpl implements OrgMessageService {
     private static final Logger mainLogger = LoggerFactory.getLogger(OrgMessageServiceImpl.class);
     private static final Logger bizLogger = LoggerFactory.getLogger("MESSAGE_LOGGER");
