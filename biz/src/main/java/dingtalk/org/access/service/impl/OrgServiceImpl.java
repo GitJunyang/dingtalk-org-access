@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Resource;
 
 /**
- * Created by lifeng.zlf on 2017/1/12.
+ * @since 17/3/20 ä¸‹åˆ4:58
  */
-public class OrgServiceImpl implements OrgService {
+public class OrgServiceImpl implements OrgService{
     private static final Logger mainLogger = LoggerFactory.getLogger(OrgServiceImpl.class);
     private static final Logger bizLogger = LoggerFactory.getLogger("ORG_LOGGER");
     @Resource
@@ -24,7 +24,7 @@ public class OrgServiceImpl implements OrgService {
     private SystemConfServiceImpl systemConfService;
 
     public ServiceResult<String> getOrgAccessToken() {
-        bizLogger.info(LogFormatter.getKVLogData(LogFormatter.LogEvent.START ));
+        bizLogger.info(LogFormatter.getKVLogData(LogFormatter.LogEvent.START));
         try{
             String url = systemConfService.getOapiDomain()+"/gettoken?corpid="+systemConfService.getCorpId()+"&corpsecret="+systemConfService.getCorpSecret();
             String tokenResult = httpRequestHelper.doHttpGet(url);
@@ -32,20 +32,20 @@ public class OrgServiceImpl implements OrgService {
             Long errCode = tokenObject.getLong("errcode");
             if(null==errCode || errCode.intValue()!=0){
                 bizLogger.error(LogFormatter.getKVLogData(LogFormatter.LogEvent.END,
-                        "»ñÈ¡ORG ACCESSTOKENÊ§°Ü"
+                        "è·å–ORG ACCESSTOKENå¤±è´¥"
                 ));
                 return ServiceResult.failure(ErrorCode.SYS_ERROR);
             }
             return ServiceResult.success(tokenObject.getString("access_token"));
-            //TODO Õâ¸ötokenĞèÒª»º´æÆğÀ´.Ã»ÓĞ±ØÒªÃ¿´Î¶¼Í¨¹ı¿ª·ÅÆ½Ì¨È¥»ñÈ¡token.ºÜÈİÒ×´¥·¢Á÷¿Ø
-            //TODOÏÂÊÇµ±Ç°Ä¬ÈÏµÄÆµÂÊÏŞÖÆ£¬¶¤¶¤ºóÌ¨¿ÉÄÜ»á¸ù¾İÔËÓªÇé¿öµ÷Õû´ËãĞÖµ£º
-            //TODOÃ¿¸öÆóÒµµ÷ÓÃµ¥¸ö½Ó¿ÚµÄÆµÂÊ²»¿É³¬¹ı1500´Î/·Ö
-            //TODOÃ¿¸öISV£¨Ó¦ÓÃÌá¹©ÉÌ£©µ÷ÓÃµ¥¸ö½Ó¿ÚµÄÆµÂÊ²»¿É³¬¹ı2000´Î/·Ö
-            //TODOÃ¿¸öISV£¨Ó¦ÓÃÌá¹©ÉÌ£©µ÷ÓÃµ¥¸öÆóÒµµÄµ¥¸ö½Ó¿ÚÆµÂÊ²»¿É³¬¹ı1500´Î/·Ö
-            //TODOÃ¿¸öÌ×¼şµ÷ÓÃµ¥¸öÆóÒµµÄµ¥¸ö½Ó¿ÚÆµÂÊ²»¿É³¬¹ı1000´Î/·Ö
+            //TODO è¿™ä¸ªtokenéœ€è¦ç¼“å­˜èµ·æ¥.æ²¡æœ‰å¿…è¦æ¯æ¬¡éƒ½é€šè¿‡å¼€æ”¾å¹³å°å»è·å–token.å¾ˆå®¹æ˜“è§¦å‘æµæ§
+            //TODOä¸‹æ˜¯å½“å‰é»˜è®¤çš„é¢‘ç‡é™åˆ¶ï¼Œé’‰é’‰åå°å¯èƒ½ä¼šæ ¹æ®è¿è¥æƒ…å†µè°ƒæ•´æ­¤é˜ˆå€¼ï¼š
+            //TODOæ¯ä¸ªä¼ä¸šè°ƒç”¨å•ä¸ªæ¥å£çš„é¢‘ç‡ä¸å¯è¶…è¿‡1500æ¬¡/åˆ†
+            //TODOæ¯ä¸ªISVï¼ˆåº”ç”¨æä¾›å•†ï¼‰è°ƒç”¨å•ä¸ªæ¥å£çš„é¢‘ç‡ä¸å¯è¶…è¿‡2000æ¬¡/åˆ†
+            //TODOæ¯ä¸ªISVï¼ˆåº”ç”¨æä¾›å•†ï¼‰è°ƒç”¨å•ä¸ªä¼ä¸šçš„å•ä¸ªæ¥å£é¢‘ç‡ä¸å¯è¶…è¿‡1500æ¬¡/åˆ†
+            //TODOæ¯ä¸ªå¥—ä»¶è°ƒç”¨å•ä¸ªä¼ä¸šçš„å•ä¸ªæ¥å£é¢‘ç‡ä¸å¯è¶…è¿‡1000æ¬¡/åˆ†
         }catch (Throwable e){
             mainLogger.error(LogFormatter.getKVLogData(LogFormatter.LogEvent.END,
-                    "ÏµÍ³Òì³£"
+                    "ç³»ç»Ÿå¼‚å¸¸"
             ),e);
             return ServiceResult.failure(ErrorCode.SYS_ERROR);
         }
@@ -66,19 +66,47 @@ public class OrgServiceImpl implements OrgService {
             Long errCode = ticketObject.getLong("errcode");
             if(null==errCode || errCode.intValue()!=0){
                 bizLogger.error(LogFormatter.getKVLogData(LogFormatter.LogEvent.END,
-                        "´´½¨²¿ÃÅÊ§°Ü",
+                        "åˆ›å»ºéƒ¨é—¨å¤±è´¥",
                         LogFormatter.KeyValue.getNew("ticketObject", ticketObject)
                 ));
                 return ServiceResult.failure(ErrorCode.SYS_ERROR);
             }
             String ticket = ticketObject.getString("ticket");
-            //TODO ×¢Òâ:Ã¿´ÎÇëÇó¿ª·ÅÆ½Ì¨»ñµÃµÄticket¶¼ÊÇ²»Í¬µÄ¡£»ñÈ¡ĞÂµÄticketÀÏµÄticket¾Í»áÊ§Ğ§µôÁË
-            //TODO ticketĞèÒª×ö»º´æ»º´æÆğÀ´
+            //TODO æ³¨æ„:æ¯æ¬¡è¯·æ±‚å¼€æ”¾å¹³å°è·å¾—çš„ticketéƒ½æ˜¯ä¸åŒçš„ã€‚è·å–æ–°çš„ticketè€çš„ticketå°±ä¼šå¤±æ•ˆæ‰äº†
+            //TODO ticketéœ€è¦åšç¼“å­˜ç¼“å­˜èµ·æ¥
             return ServiceResult.success(ticket);
         }catch (Throwable e){
             mainLogger.error(LogFormatter.getKVLogData(LogFormatter.LogEvent.END,
-                    "ÏµÍ³Òì³£"
+                    "ç³»ç»Ÿå¼‚å¸¸"
             ), e);
+            return ServiceResult.failure(ErrorCode.SYS_ERROR);
+        }
+    }
+
+    public ServiceResult<String> getChannelAccessToken() {
+        bizLogger.info(LogFormatter.getKVLogData(LogFormatter.LogEvent.START));
+        try{
+            String url = systemConfService.getOapiDomain()+"/channel/get_channel_token?corpid="+systemConfService.getCorpId()+"&channel_secret="+systemConfService.getChannelSecret();
+            String tokenResult = httpRequestHelper.doHttpGet(url);
+            JSONObject tokenObject = JSON.parseObject(tokenResult);
+            Long errCode = tokenObject.getLong("errcode");
+            if(null==errCode || errCode.intValue()!=0){
+                bizLogger.error(LogFormatter.getKVLogData(LogFormatter.LogEvent.END,
+                        "è·å–CHANNEL ACCESSTOKENå¤±è´¥"
+                ));
+                return ServiceResult.failure(ErrorCode.SYS_ERROR);
+            }
+            return ServiceResult.success(tokenObject.getString("access_token"));
+            //TODO è¿™ä¸ªtokenéœ€è¦ç¼“å­˜èµ·æ¥.æ²¡æœ‰å¿…è¦æ¯æ¬¡éƒ½é€šè¿‡å¼€æ”¾å¹³å°å»è·å–token.å¾ˆå®¹æ˜“è§¦å‘æµæ§
+            //TODOä¸‹æ˜¯å½“å‰é»˜è®¤çš„é¢‘ç‡é™åˆ¶ï¼Œé’‰é’‰åå°å¯èƒ½ä¼šæ ¹æ®è¿è¥æƒ…å†µè°ƒæ•´æ­¤é˜ˆå€¼ï¼š
+            //TODOæ¯ä¸ªä¼ä¸šè°ƒç”¨å•ä¸ªæ¥å£çš„é¢‘ç‡ä¸å¯è¶…è¿‡1500æ¬¡/åˆ†
+            //TODOæ¯ä¸ªISVï¼ˆåº”ç”¨æä¾›å•†ï¼‰è°ƒç”¨å•ä¸ªæ¥å£çš„é¢‘ç‡ä¸å¯è¶…è¿‡2000æ¬¡/åˆ†
+            //TODOæ¯ä¸ªISVï¼ˆåº”ç”¨æä¾›å•†ï¼‰è°ƒç”¨å•ä¸ªä¼ä¸šçš„å•ä¸ªæ¥å£é¢‘ç‡ä¸å¯è¶…è¿‡1500æ¬¡/åˆ†
+            //TODOæ¯ä¸ªå¥—ä»¶è°ƒç”¨å•ä¸ªä¼ä¸šçš„å•ä¸ªæ¥å£é¢‘ç‡ä¸å¯è¶…è¿‡1000æ¬¡/åˆ†
+        }catch (Throwable e){
+            mainLogger.error(LogFormatter.getKVLogData(LogFormatter.LogEvent.END,
+                    "ç³»ç»Ÿå¼‚å¸¸"
+            ),e);
             return ServiceResult.failure(ErrorCode.SYS_ERROR);
         }
     }

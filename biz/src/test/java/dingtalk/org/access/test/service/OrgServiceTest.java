@@ -29,4 +29,9 @@ public class OrgServiceTest extends BaseTestCase {
     }
 
 
+    @Test
+    public void test_getChannelAccessToken(){
+        ServiceResult<String> serviceResult = orgService.getChannelAccessToken();
+        System.err.println(JSON.toJSONString(serviceResult));
+    }
 }

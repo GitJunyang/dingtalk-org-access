@@ -9,7 +9,7 @@ import dingtalk.org.access.util.ServiceResult;
 public interface OrgService {
 
     /**
-     * 获取企业制定部门下的子部门
+     * 获取企业的accessToken
      * @return
      */
     public ServiceResult<String> getOrgAccessToken();
@@ -20,5 +20,11 @@ public interface OrgService {
      * @return
      */
     public ServiceResult<String> getOrgJSAPITicket();
+
+    /**
+     * 获取服务窗的accessToken
+     * @return
+     */
+    public ServiceResult<String> getChannelAccessToken();
 
 }
