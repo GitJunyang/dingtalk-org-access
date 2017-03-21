@@ -14,6 +14,12 @@ public class LinkMessageVO extends BaseMessageVO {
         private String title;
         private String text;
 
+        /**
+         * 服务窗应用发消息需要使用这两个参数
+         */
+        private String message_url;
+        private String pic_url;
+
         public String getMessageUrl() {
             return messageUrl;
         }
@@ -44,6 +50,22 @@ public class LinkMessageVO extends BaseMessageVO {
 
         public void setText(String text) {
             this.text = text;
+        }
+
+        public String getMessage_url() {
+            return message_url;
+        }
+
+        public void setMessage_url(String message_url) {
+            this.message_url = message_url;
+        }
+
+        public String getPic_url() {
+            return pic_url;
+        }
+
+        public void setPic_url(String pic_url) {
+            this.pic_url = pic_url;
         }
     }
 

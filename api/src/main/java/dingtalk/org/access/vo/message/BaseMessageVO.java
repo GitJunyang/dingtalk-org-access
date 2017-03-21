@@ -27,6 +27,11 @@ public class BaseMessageVO {
      */
     private String chatid;
 
+    /**
+     * 服务窗会话消息的参数
+     */
+    private String channelAgentId;
+
     public String getAgentid() {
         return agentid;
     }
@@ -89,5 +94,13 @@ public class BaseMessageVO {
 
     public void setChatid(String chatid) {
         this.chatid = chatid;
+    }
+
+    public String getChannelAgentId() {
+        return channelAgentId;
+    }
+
+    public void setChannelAgentId(String channelAgentId) {
+        this.channelAgentId = channelAgentId;
     }
 }
